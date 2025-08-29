@@ -33,11 +33,10 @@ def kb_for_post1(p1, p2):
     )
 
 
-def kb_for_post2(p1, p2):
+def kb_for_post2(p2):
     return InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text=p2["button_text"] or "↗️", url=p2["link"])],
-            [InlineKeyboardButton(text=p1["button_text"] or "↗️", url=p1["link"])],
         ]
     )
 
@@ -59,13 +58,12 @@ async def start_func(msg: Message):
 
 @router.callback_query(F.data == "post:2")
 async def show_post2(cb: CallbackQuery):
-    p1 = get_post1()
     p2 = get_post2()
     photo = FSInputFile("images/post2.jpeg")
     await cb.message.answer_photo(
         photo=photo,
         caption=p2["text"],
         parse_mode="HTML",
-        reply_markup=kb_for_post2(p1, p2),
+        reply_markup=kb_for_post2(p2),
     )
     await cb.answer()
