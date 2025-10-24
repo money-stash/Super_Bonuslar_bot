@@ -7,6 +7,8 @@ from handlers import (
     change_link,
     change_post_text,
     change_img,
+    change_link_text,
+    change_next_post_text,
 )
 
 from data.database import initialize_db
@@ -25,6 +27,8 @@ async def main():
         change_link.router,
         change_post_text.router,
         change_img.router,
+        change_link_text.router,
+        change_next_post_text.router,
     )
 
     await bot.delete_webhook(drop_pending_updates=True)
