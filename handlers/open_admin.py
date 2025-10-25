@@ -12,39 +12,39 @@ async def admin_panel(msg: Message):
 
     buttons = []
     for i in range(1, 3):
-        buttons.extend(
+        group = [
             [
-                [
-                    InlineKeyboardButton(
-                        text=f"Change post {i} img", callback_data=f"change_img_post{i}"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text=f"Change post {i} link",
-                        callback_data=f"change_link_post{i}",
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text=f"Change post {i} text",
-                        callback_data=f"change_text_post{i}",
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                        text=f"Change post {i} link text",
-                        callback_data=f"change_link_text_post{i}",
-                    )
-                ],
+                InlineKeyboardButton(
+                    text=f"Change post {i} img", callback_data=f"change_img_post{i}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text=f"Change post {i} link", callback_data=f"change_link_post{i}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text=f"Change post {i} text", callback_data=f"change_text_post{i}"
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    text=f"Change post {i} link text",
+                    callback_data=f"change_link_text_post{i}",
+                )
+            ],
+        ]
+        if i != 2:
+            group.append(
                 [
                     InlineKeyboardButton(
                         text=f"Change next post {i} text",
                         callback_data=f"change_next_post_text_post{i}",
                     )
-                ],
-            ]
-        )
+                ]
+            )
+        buttons.extend(group)
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=buttons)
     await msg.answer("Admin panel", reply_markup=keyboard)
