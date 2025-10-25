@@ -33,7 +33,7 @@ def get_post_by_number(post_num: int) -> dict:
     }
 
 
-def kb_for_post(post_num: int, total_posts: int = 10):
+def kb_for_post(post_num: int, total_posts: int = 2):
     """Generate keyboard for any post number"""
     post_data = get_post_by_number(post_num)
     keyboard = []
